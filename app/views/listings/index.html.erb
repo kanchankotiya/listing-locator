@@ -1,59 +1,104 @@
-<div id="titlebar">
-  <div class="row">
-    <div class="col-md-12">
-      <h2>My Listings</h2>
-      <!-- Breadcrumbs -->
-      <nav id="breadcrumbs">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Dashboard</a></li>
-          <li>My Listings</li>
-        </ul>
-      </nav>
+<%= render "home/home_header" %>
+<section id="listing_banner" class="parallex-bg">
+  <div class="container">
+    <div class="white-text text-center div_zindex">
+      <div class="search_form">
+        <form action="" method="get">
+          <div class="form-group">
+            <div class="select">
+              <select class="form-control">
+                <option>What are you looking for?</option>
+                <option>Real Estate</option>
+                <option>Restaurant</option>
+                <option>Real Estate</option>
+                <option>Health &amp; Fitness</option>
+                <option>Beauty &amp; Spas</option>
+                <option>Hotels &amp; Travel</option>
+                <option>Automotive</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Locaton">
+          </div>
+          <div class="btn_group">
+            <input type="submit" value="Search" class="btn btn-block">
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
+  <div class="dark-overlay"></div>
+</section>
 
-<div class="row"> 
-  <div class="col-lg-12 col-md-12">
-    <div class="dashboard-list-box">
-      <h4>Active Listings</h4>
-      <ul>
-        <% @listings.each do |listing| %>
-          <li>
-            <div class="list-box-listing">
-              <div class="list-box-listing-img">
+<section id="inner_pages">
+  <div class="container"> 
+    <div class="listing_header">
+      <h5><%= @listing_type.name%></h5>
+      
+      <div class="layout-switcher">
+        <a href="#" class="active"><i class="fa fa-th"></i></a>
+        <a href="listing-listview.html"><i class="fa fa-align-justify"></i></a>
+      </div>
+    </div>
+    
+    <div class="row">
+      <% @listings.each do |listing| %>
+        <div class="col-md-4 grid_view show_listing">
+          <div class="listing_wrap">
+            <div class="listing_img">
+              <span class="like_post"><i class="fa fa-bookmark-o"></i></span>
+              <div class="listing_cate">
+                <span class="cate_icon"><a href="#"><%= image_tag @listing_type.icon %>
+                </a></span> 
+                <span class="listing_like"><a href="#"><i class="fa fa-heart-o"></i></a></span>
+              </div>
+              <div class="listing-image">
                 <%= link_to listing_type_listing_path(listing.listing_type, listing) do %>
                   <%= image_tag listing.banner_image %>
                 <% end %>
+              </div>  
+            </div>
+            <div class="listing_info">
+              <div class="post_category">
+                <a href="#"><%= @listing_type.name%></a>
               </div>
-              <div class="list-box-listing-content">
-                <div class="inner">
-                  <h3><a href="#"><%= listing.name %></a></h3>
-                  <span><%= listing.address %></span>
-                  <div class="star-rating">
-                    <div class="rating-counter">(12 reviews)</div>
-                  </div>
-                </div>
+              <h4><a href="#"><%= listing.name%></a></h4>
+              <p><%= truncate(listing.about_listing, length: 30)%></p>
+              
+              <div class="listing_review_info">
+                <p><span class="review_score">4.0/5</span> 
+                 <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> 
+                 <i class="fa fa-star active"></i> <i class="fa fa-star"></i> 
+                 (5 Reviews) </p>
+                 <p class="listing_map_m"><i class="fa fa-map-marker"></i> Los Angeles</p>
               </div>
             </div>
-            <div class="buttons-to-right">
-              <%= link_to edit_listing_type_path(listing), class: "button gray" do %>
-                <i class="fa fa-pencil"></i> Edit
-              <% end %>
-              <%= link_to listing_type_listing_path(listing.listing_type, listing), method: :delete, class: "button red" do %>
-                <i class="fa fa-trash-o"></i> Delete
-              <% end %>
-              <%= link_to listing_type_listing_path(listing.listing_type,listing), class: "button green" do %>
-                <i class="fa fa-eye"></i> View
-              <% end %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
+          </div>
+        </div>
+      <% end %>
     </div>
+    <nav class="pagination_nav">
+      <ul class="pagination">
+        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+        <li class="active"><a href="#">1</a></li>
+        <li><a href="#">2 </a></li>
+        <li><a href="#">3 </a></li>
+        <li><a href="#">4 </a></li>
+        <li><a href="#">5 </a></li>
+        <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+      </ul>
+    </nav>
   </div>
-</div>
+</section>
 
 <p id="notice"><%= notice %></p>
 <%= link_to 'New Listing', new_listing_type_path %>
+<style type="text/css">
+  .listing-image img 
+  {
+    min-height: 256px;
+    min-width: 358px;
+
+  }
+</style>

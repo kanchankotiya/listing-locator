@@ -1,10 +1,10 @@
 class ListingsController < ApplicationController
-  before_action :set_listing, only: [:show, :edit, :update, :destroy]
+  before_action :set_listing, only: [:show]
+  before_action :set_listing_type, only: [:show, :index]
   layout 'listing'
   
   def index
-    @listings = Listing.all
-   
+    @listings = @listing_type.listings
   end
 
   def show
@@ -16,8 +16,8 @@ class ListingsController < ApplicationController
       @listing = Listing.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-   def listing_params
-      params.require(:listing).permit(:name, :city, :state, :country, :banner_image, :longitude, :latitude, :about_palce, :address, :phone_number, :email, :website,:zip_code)
+    def set_listing_type
+      @listing_type = ListingType.find(params[:listing_type_id])
     end
+
 end
