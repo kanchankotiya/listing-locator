@@ -1,0 +1,59 @@
+<div id="titlebar">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>My Listings</h2>
+      <!-- Breadcrumbs -->
+      <nav id="breadcrumbs">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li>My Listings</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div class="row"> 
+  <div class="col-lg-12 col-md-12">
+    <div class="dashboard-list-box">
+      <h4>Active Listings</h4>
+      <ul>
+        <% @listings.each do |listing| %>
+          <li>
+            <div class="list-box-listing">
+              <div class="list-box-listing-img">
+                <%= link_to listing_type_listing_path(listing.listing_type, listing) do %>
+                  <%= image_tag listing.banner_image %>
+                <% end %>
+              </div>
+              <div class="list-box-listing-content">
+                <div class="inner">
+                  <h3><a href="#"><%= listing.name %></a></h3>
+                  <span><%= listing.address %></span>
+                  <div class="star-rating">
+                    <div class="rating-counter">(12 reviews)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="buttons-to-right">
+              <%= link_to edit_listing_type_path(listing), class: "button gray" do %>
+                <i class="fa fa-pencil"></i> Edit
+              <% end %>
+              <%= link_to listing_type_listing_path(listing.listing_type, listing), method: :delete, class: "button red" do %>
+                <i class="fa fa-trash-o"></i> Delete
+              <% end %>
+              <%= link_to listing_type_listing_path(listing.listing_type,listing), class: "button green" do %>
+                <i class="fa fa-eye"></i> View
+              <% end %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<p id="notice"><%= notice %></p>
+<%= link_to 'New Listing', new_listing_type_path %>

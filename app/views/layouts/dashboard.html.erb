@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <title>ListingHub - Directory & Listings HTML Template</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag  'dashboard', media: 'all' %>
+  
+  <!-- Google-Font-->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"> 
+</head>
+
+<body>
+  <%= javascript_include_tag 'dashboard' %>
+  <div class="dashboard_container">
+    <%= render "layouts/user_dashboard_nav" %>
+    <div id="dashboard">
+      <%= render "layouts/user_dashboard_left_nav" %>
+      <div class="dashboard-content">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

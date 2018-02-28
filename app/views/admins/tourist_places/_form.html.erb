@@ -1,0 +1,57 @@
+<%= form_with(model: tourist_place, local: true) do |form| %>
+  <% if tourist_place.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tourist_place.errors.count, "error") %> prohibited this tourist_place from being saved:</h2>
+
+      <ul>
+      <% tourist_place.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :tourist_place_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city, id: :tourist_place_city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.text_field :state, id: :tourist_place_state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.text_field :country, id: :tourist_place_country %>
+  </div>
+
+  <div class="field">
+    <%= form.label :banner_image %>
+    <%= form.file_field :banner_image, id: :tourist_place_banner_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude, id: :tourist_place_longitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude, id: :tourist_place_latitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :about_place %>
+    <%= form.text_area :about_place, id: :tourist_place_about_place %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tourist_place.name %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @tourist_place.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @tourist_place.state %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @tourist_place.country %>
+</p>
+
+<p>
+  <strong>Banner image:</strong>
+  <%= image_tag @tourist_place.banner_image.url %>
+  
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @tourist_place.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @tourist_place.latitude %>
+</p>
+
+<p>
+  <strong>About place:</strong>
+  <%= @tourist_place.about_place %>
+</p>
+
+<%= link_to 'Edit', edit_tourist_place_path(@tourist_place) %> |
+<%= link_to 'Back', tourist_places_path %>

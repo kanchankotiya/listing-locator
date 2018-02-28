@@ -1,0 +1,99 @@
+
+
+<%= form_with(model: tourist_place, local: true) do |form| %>
+  <% if tourist_place.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tourist_place.errors.count, "error") %> prohibited this tourist_place from being saved:</h2>
+
+      <ul>
+        <% tourist_place.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group form-group-tourist">
+        <%= form.label :name, class: "grey-text" %>
+        <%= form.text_field :name, id: :tourist_place_name, class: "form-control input-field" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group form-group-tourist">
+        <%= form.label :city, class: "grey-text"   %>
+        <%= form.text_field :city, id: :tourist_place_city, class: "form-control input-field" %>
+      </div>
+    </div>
+  </div> 
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group form-group-tourist">
+        <%= form.label :state, class: "grey-text"   %>
+        <%= form.text_field :state, id: :tourist_place_state, class: "form-control input-field"  %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group form-group-tourist">
+        <%= form.label :country, class: "grey-text"   %>
+        <%= form.text_field :country, id: :tourist_place_country, class: "form-control input-field"  %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group form-group-tourist">
+        <%= form.label :banner_image, class: "grey-text"   %>
+        <%= form.file_field :banner_image, id: :tourist_place_banner_image, class: "form-control input-field", style: "border: none;line-height:0px;"  %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group form-group-tourist">
+        <%= form.label :zip_code, class: "grey-text"   %>
+        <%= form.text_field :zip_code, id: :tourist_place_zip_code, class: "form-control input-field"  %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group form-group-tourist">
+    <%= form.label :about_place, class: "grey-text"   %>
+    <%= form.text_area :about_place, id: :tourist_place_about_place ,class: "ckeditor form-control input-field" %>
+  </div>
+  <div class="panel-footer"> 
+    <div class="text-center mt-4 actions">
+      <%= form.submit class: "btn btn-indigo" %> 
+      <%= link_to 'Back', tourist_places_path, class: "btn btn-indigo" %>
+    </div>
+  </div>
+
+<%end%>
+
+
+<style type="text/css">
+ .input-field
+ {
+  border: 1px solid;
+  background: transparent;
+  height: 36px;
+}
+.form-page-container
+{
+  margin-top: 5%;
+  width: 80%;
+}
+.form-group-tourist
+{
+  width: 87%;
+  margin-left: 7%;
+  margin-top: 7%;
+}
+.panel-default .panel-hedaing-tourist
+{
+  background-color: #c7c7c7;
+  border-color: #ecebeb;
+  height: 52px;
+  font-size: 26px;
+}   
+</style>

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amenity_icon: MyString
+  amenity_name: MyString
+
+two:
+  amenity_icon: MyString
+  amenity_name: MyString

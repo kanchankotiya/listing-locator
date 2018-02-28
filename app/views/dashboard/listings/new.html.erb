@@ -1,0 +1,18 @@
+<div id="titlebar">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Add New Listing</h2>
+      <!-- Breadcrumbs -->
+      <nav id="breadcrumbs">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li>Add New Listing</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<%= render 'form', listing: @listing %>
+
+<%= link_to 'Back', new_dashboard_listing_path %>

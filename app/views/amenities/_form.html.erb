@@ -1,0 +1,28 @@
+<%= form_with(model: amenity, local: true) do |form| %>
+  <% if amenity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(amenity.errors.count, "error") %> prohibited this amenity from being saved:</h2>
+
+      <ul>
+      <% amenity.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :amenity_icon %>
+    <%= form.text_field :amenity_icon, id: :amenity_amenity_icon %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :amenity_name %>
+    <%= form.text_field :amenity_name, id: :amenity_amenity_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

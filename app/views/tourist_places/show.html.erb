@@ -1,0 +1,83 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tourist_place.name %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @tourist_place.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @tourist_place.state %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @tourist_place.country %>
+</p>
+
+<p>
+  <strong>Banner image:</strong>
+
+   <%= image_tag @tourist_place.banner_image_url %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @tourist_place.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @tourist_place.latitude %>
+</p>
+
+<p>
+  <strong>About place:</strong>
+  <%= raw(@tourist_place.about_place) %>
+</p>
+
+<%= form_for :upload_images, url: :tourist_place_image_tourist_places,  html: { multipart: true, class: "dropzone"} do |f|  %>
+
+  <%= f.hidden_field :tourist_place_id, value: @tourist_place.id %>
+    <div class="fallback">
+      <%= f.file_field :img_name %><br>
+      <%= f.submit "Upload" %>
+    </div>
+<% end %>
+
+
+
+<%= link_to 'Edit', edit_tourist_place_path(@tourist_place) %> |
+<%= link_to 'Back', tourist_places_path %>
+<script type="text/javascript">
+    $(function () {
+
+    $(".dropzone").dropzone({
+    
+      paramName: 'upload[img_name]',
+      addRemoveLinks: true,
+      success: function(file, response) {
+        $(file.previewElement).find('.dz-remove').attr('id', response.id);
+        $(file.previewElement).addClass('dz-success');
+      },
+      removedfile: function(file) {
+        var id = $(file.previewTemplate).find('.dz-remove').attr('id');
+        $.ajax({
+          type: 'DELETE',
+          url: "/remove_tourist_place_image/" + id,
+          success: function(data) {
+            console.log(data.message);
+          }
+        });
+
+        var previewElement;
+        return (previewElement = file.previewElement) != null ? (previewElement.parentNode.removeChild(file.previewElement)) : (void 0);
+      },
+    });
+  });
+  </script>

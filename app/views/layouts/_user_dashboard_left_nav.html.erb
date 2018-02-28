@@ -1,0 +1,23 @@
+<!-- Navigation -->
+<div id="dashboard-nav" class="dashboard-nav">  
+  <ul>
+    <li class="active"><a href="/dashboard/user"><i class="fa fa-cogs"></i> Dashboard</a></li>
+    <li><a id="MLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-th-list"></i> My Listings</a>
+      <ul class="dropdown-menu" aria-labelledby="MLabel">
+        <li><%= link_to "Active", dashboard_listings_path %></li>
+        <li><a href="dashboard-my-listings.html">Pending <span class="nav-tag yellow">1</span></a></li>
+        <li><a href="dashboard-my-listings.html">Expired <span class="nav-tag red">2</span></a></li>
+      </ul> 
+    </li>
+    <li><a href="dashboard-reviews.html"><i class="fa fa-star-o"></i> Reviews</a></li>
+    <li><a href="dashboard-bookmarks.html"><i class="fa fa-bookmark-o"></i> Bookmarks</a></li>
+    <li>
+      <%= link_to new_dashboard_listing_path do %>
+        <i class="fa fa-plus"></i> Add Listing
+      <% end %>
+    </li>
+    <li><a href="dashboard-my-profile.html"><i class="fa fa-user-o"></i> My Profile</a></li>
+    <li><a href="index.html"><i class="fa fa-power-off"></i> Logout</a></li>
+  </ul> 
+</div>
+  <!-- Navigation / End -->

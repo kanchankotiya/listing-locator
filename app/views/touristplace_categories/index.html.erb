@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Touristplace Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @touristplace_categories.each do |touristplace_category| %>
+      <tr>
+        <td><%= touristplace_category.name %></td>
+        <td><%= link_to 'Show', touristplace_category %></td>
+        <td><%= link_to 'Edit', edit_touristplace_category_path(touristplace_category) %></td>
+        <td><%= link_to 'Destroy', touristplace_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Touristplace Category', new_touristplace_category_path %>

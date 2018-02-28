@@ -1,0 +1,492 @@
+<!-- Header -->
+<header id="header">
+  <nav class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="10">
+    <div class="container">
+      <div class="navbar-header">
+        <div class="logo"> 
+          <a href="index.html">
+            <%= image_tag "logo.png", alt: "image" %>
+          </a> </div>
+          <button id="menu_slide" data-target="#navigation" aria-expanded="false" data-toggle="collapse" class="navbar-toggle collapsed" type="button"> 
+            <span class="sr-only">Toggle navigation</span> 
+            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span> 
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navigation">
+          <ul class="nav navbar-nav">
+            <li class="menu-item-has-children"><a href="#">Home</a> <span class="arrow"></span>
+              <ul class="sub-menu">
+                <li><a href="index.html">Home 1</a></li>
+                <li><a href="index-2.html">Home 2</a></li>
+                <li><a href="index-3.html">Home 3</a></li>
+              </ul>
+            </li>
+            <li class="menu-item-has-children"><a href="#">Listing</a> <span class="arrow"></span>
+             <ul class="sub-menu">
+              <li class="menu-item-has-children"><a href="#">Grid Layout</a> <span class="arrow"></span>
+                <ul class="sub-menu">
+                  <li><a href="listing-grid.html">Listing Gird</a></li>
+                  <li><a href="listing-grid-sidebar.html">Listing Gird Sidebar</a></li>
+                  <li><a href="listing-grid-map.html">Listing Gird Half Map</a></li>
+                </ul> 
+              </li>
+              <li class="menu-item-has-children"><a href="#">List Layout</a> <span class="arrow"></span>
+                <ul class="sub-menu">
+                  <li><a href="listing-listview.html">Listing List</a></li>
+                  <li><a href="listing-listview-sidebar.html">Listing List Sidebar</a></li>
+                  <li><a href="listing-listview-map.html">Listing List Half Map</a></li>
+                </ul> 
+              </li>
+              <li class="menu-item-has-children"><a href="#">Single Listing</a> <span class="arrow"></span>
+                <ul class="sub-menu">
+                  <li><a href="listing-detail-1.html">Style 1</a></li>
+                  <li><a href="listing-detail-2.html">Style 2</a></li>
+                </ul> 
+              </li>
+            </ul>
+          </li>
+          <li class="menu-item-has-children"><a href="#">Pages</a> <span class="arrow"></span>
+           <ul class="sub-menu">
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="how-it-work.html">How it Work</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="404-error.html">404 Error</a></li>
+          </ul> 
+        </li>
+        <li class="menu-item-has-children"><a href="#">Blog</a> <span class="arrow"></span>
+         <ul class="sub-menu">
+          <li><a href="blog-grid-style.html">Blog Grid Style</a></li>
+          <li><a href="blog-list-style.html">Blog List Style</a></li>
+          <li><a href="blog-single.html">Single Blog</a></li>
+        </ul> 
+      </li>
+      <li class="menu-item-has-children">
+        <a href="#">Elements</a>
+        <ul class="sub-menu">
+          <li><a href="header.html">Header Style</a></li>
+          <li><a href="footer.html">Footer Style</a></li>
+        </ul> 
+      </li>
+      <li class="menu-item-has-children"><a href="#">User Panel</a> <span class="arrow"></span>
+       <ul class="sub-menu">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="dashboard-my-listings.html">My Listings</a></li>
+        <li><a href="dashboard-reviews.html">Reviews</a></li>
+        <li><a href="dashboard-bookmarks.html">Bookmarks</a></li>
+        <li><a href="blog-single.html">Add Listing</a></li>
+        <li><a href="dashboard-my-profile.html">My Profile</a></li>
+      </ul> 
+    </li>
+
+    <li><a href="signin.html">Sign In</a></li>
+  </ul>
+  <div class="submit_listing">
+    <a href="pricing.html" class="btn outline-btn"><i class="fa  fa-plus-circle"></i> Submit Listing</a>
+  </div>
+</div>
+</div>
+</nav>
+</header>
+<!-- /Header -->
+
+<!-- Banner -->
+<section id="banner" class="parallex-bg section-padding">
+  <div class="container">
+    <div class="intro_text white-text div_zindex">
+      <h1>Welcome to ListingHub</h1>
+      <h5>Search and apply to millions of Listings</h5>
+      <div class="search_form">
+        <form action="listing-grid-map.html" method="get">
+          <div class="form-group select">
+            <select class="form-control">
+              <option>What are you looking for?</option>
+              <option>Real Estate</option>
+              <option>Restaurant</option>
+              <option>Real Estate</option>
+              <option>Health & Fitness</option>
+              <option>Beauty & Spas</option>
+              <option>Hotels & Travel</option>
+              <option>Automotive</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Locaton">
+          </div>
+          <div class="form-group search_btn">
+            <input type="submit" value="Search" class="btn btn-block">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="dark-overlay"></div>
+</section>
+<!-- /Banner -->
+
+<!-- Category-Slider -->
+<section id="all_category" class="gray_bg">
+  <div class="container">
+    <div id="category_slider">
+      <div class="owl-carousel owl-theme">
+        <% @listing_types.each do |lt| %>
+          <div class="item">
+            <%= link_to listing_type_listings_path(lt) do %>
+              <div class="category_icon">
+                <%= image_tag lt.icon_url, alt: "image"%>
+              </div>
+              <p><%= lt.name %></p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>        
+  </div>
+</section>
+<!-- /Category-Slider -->
+
+<!-- Popular-Cities/Towns --> 
+<section id="popular_cities" class="section-padding">
+  <div class="container">
+    <div class="section-header text-center">
+
+      <h2>Top Ten Tourist Places</h2>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+    </div>
+    
+    <div class="row">
+      <% @tourist_places.last(8).each do |tourist_place|  %>
+      <div class="col-sm-6 col-md-3">
+        <div class="cities_list" style="background: url(<%= tourist_place.banner_image_url %>)">
+          <div class="city_listings_info">
+            <h4><%= tourist_place.name %></h4>
+            <div class="listing_number"><span>6 Listings</span> </div>
+          </div>
+          <a href="#" class="overlay_link"></a>
+        </div>
+      </div>
+      <%end%>
+      <div class="text-center">
+        <a href="#" class="btn">View More Cities / Towns</a>
+      </div>
+    </div>
+  </section>
+  <!-- /Popular Cities/Towns -->
+
+  <!-- About-us -->
+  <section id="about_info" class="section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 col-md-offset-7">
+          <div class="white_box">
+            <h3>Save time and hassle. Let us find Quick and Easy</h3>
+            <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure.</p>
+            <a href="#" class="btn">Start Now !</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- /About-us -->
+
+  <!-- Popular-Listings -->
+  <section id="popular_listings" class="section-padding">
+    <div class="container">
+      <div class="section-header text-center">
+        <h2>Popular Exclusive Listings</h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+      </div>   
+
+      <div id="popular_listing_slider">
+        <div class="owl-carousel owl-theme">
+          <div class="listing_wrap">
+            <div class="listing_img">
+              <span class="like_post"><i class="fa fa-bookmark-o"></i></span>
+              <div class="listing_cate">
+                <span class="cate_icon">
+                  <a href="#">
+                    <%= image_tag "category-icon1.png", alt: "icon-img" %>
+                  </a>
+                </span> 
+                <span class="listing_like"><a href="#"><i class="fa fa-heart-o"></i></a></span>
+              </div>
+              <a href="#">
+                <%= image_tag "listing_img1.jpg", alt: "image" %>
+              </a>
+            </div>
+            <div class="listing_info">
+              <div class="post_category">
+                <a href="#">Real Estate</a>
+              </div>
+              <h4><a href="#">The Morning Hotel</a></h4>
+              <p>5-star hotel with restaurant, Deluxe Rooms.</p>
+
+              <div class="listing_review_info">
+                <p><span class="review_score">4.0/5</span> 
+                 <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> 
+                 <i class="fa fa-star active"></i> <i class="fa fa-star"></i> 
+                 (5 Reviews) </p>
+                 <p class="listing_map_m"><i class="fa fa-map-marker"></i> Los Angeles</p>
+               </div>
+             </div>
+           </div>
+
+           <div class="listing_wrap">
+            <div class="listing_img">
+              <span class="like_post"><i class="fa fa-bookmark-o"></i></span>
+              <div class="listing_cate">
+                <span class="cate_icon"><a href="#"><%= image_tag "category-icon2.png", alt: "icon-img" %></a></span> 
+                <span class="listing_like"><a href="#"><i class="fa fa-heart-o"></i></a></span>
+              </div>
+              <a href="#"><%= image_tag "listing_img2.jpg", alt: "image" %></a>
+            </div>
+            <div class="listing_info">
+              <div class="post_category">
+                <a href="#">Restaurant</a>
+              </div>
+              <h4><a href="#">Eating Restaurant</a></h4>
+              <p>5-star hotel with restaurant, Deluxe Rooms.</p>
+
+              <div class="listing_review_info">
+                <p><span class="review_score">4.0/5</span> 
+                 <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> 
+                 <i class="fa fa-star active"></i> <i class="fa fa-star"></i> 
+                 (5 Reviews) </p>
+                 <p class="listing_map_m"><i class="fa fa-map-marker"></i> Los Angeles</p>
+               </div>
+             </div>
+           </div>
+
+           <div class="listing_wrap">
+            <div class="listing_img">
+              <span class="like_post"><i class="fa fa-bookmark-o"></i></span>
+              <div class="listing_cate">
+                <span class="cate_icon"><a href="#"><%= image_tag "category-icon4.png", alt: "icon-img" %></a></span> 
+                <span class="listing_like"><a href="#"><i class="fa fa-heart-o"></i></a></span>
+              </div>
+              <a href="#"><%= image_tag "listing_img4.jpg", alt: "image" %></a>
+            </div>
+            <div class="listing_info">
+              <div class="post_category">
+                <a href="#">Beauty & Spas</a>
+              </div>
+              <h4><a href="#">The Morning Hotel</a></h4>
+              <p>5-star hotel with restaurant, Deluxe Rooms.</p>
+
+              <div class="listing_review_info">
+                <p><span class="review_score">4.0/5</span> 
+                 <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> 
+                 <i class="fa fa-star active"></i> <i class="fa fa-star"></i> 
+                 (5 Reviews) </p>
+                 <p class="listing_map_m"><i class="fa fa-map-marker"></i> Los Angeles</p>
+               </div>
+             </div>
+           </div>
+
+           <div class="listing_wrap">
+            <div class="listing_img">
+              <span class="like_post"><i class="fa fa-bookmark-o"></i></span>
+              <div class="listing_cate">
+                <span class="cate_icon"><a href="#"><%= image_tag "category-icon2.png", alt: "icon-img" %></a></span> 
+                <span class="listing_like"><a href="#"><i class="fa fa-heart-o"></i></a></span>
+              </div>
+              <a href="#"><%= image_tag "listing_img3.jpg", alt: "image" %></a>
+            </div>
+            <div class="listing_info">
+              <div class="post_category">
+                <a href="#">Restaurant</a>
+              </div>
+              <h4><a href="#">Blue Restaurant</a></h4>
+              <p>5-star hotel with restaurant, Deluxe Rooms.</p>
+
+              <div class="listing_review_info">
+                <p><span class="review_score">4.0/5</span> 
+                 <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> 
+                 <i class="fa fa-star active"></i> <i class="fa fa-star"></i> 
+                 (5 Reviews) </p>
+                 <p class="listing_map_m"><i class="fa fa-map-marker"></i> Los Angeles</p>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+
+     </div>
+   </section>
+   <!-- /Popular-Listings -->
+
+   <!-- Testimonials -->
+   <section id="testimonials" class="section-padding parallex-bg">
+    <div class="container">
+      <div class="section-header text-center white-text div_zindex">
+        <h2>What Our Clients Say</h2>
+      </div>
+
+      <div id="testimonial_slider" class="div_zindex text-center">
+        <div class="owl-carousel owl-theme">
+          <div class="item">
+            <div class="testimonial_header">
+              <h5>William Steves</h5>
+              <p>CEO of XYZ PVT.</p>
+            </div>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.</p>
+          </div>
+
+          <div class="item">
+            <div class="testimonial_header">
+              <h5>William Steves</h5>
+              <p>CEO of XYZ PVT.</p>
+            </div>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dark-overlay"></div>
+  </section>
+  <!-- /Testimonials -->
+
+  <!-- Latest-Blog -->
+  <section id="latest_blog" class="section-padding">
+    <div class="container">
+      <div class="section-header text-center">
+        <h2>Latest Articles and Tips</h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="post_wrap">
+            <div class="post_img">
+              <a href="#">
+                <%= image_tag "post_1.jpg", alt: "image" %>
+              </a>
+            </div>
+            <div class="post_info">
+              <div class="post_category">
+                <a href="#">Beauty & Spas</a>
+              </div>
+              <h4><a href="#">The Standard Chunk.</a></h4>
+              <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
+              <div class="post_meta">
+                <p>By: <a href="#">ListingHub</a></p>
+                <p>On: <a href="#">22 March, 2017</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="post_wrap">
+            <div class="post_img">
+              <a href="#">  
+               <%= image_tag "post_2.jpg", alt: "image" %>
+             </a>
+           </div>
+           <div class="post_info">
+            <div class="post_category">
+              <a href="#">Restaurant</a>
+            </div>
+            <h4><a href="#">There are many variations.</a></h4>
+            <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
+            <div class="post_meta">
+              <p>By: <a href="#">ListingHub</a></p>
+              <p>On: <a href="#">22 March, 2017</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="post_wrap">
+          <div class="post_img">
+            <a href="#">
+              <%= image_tag "post_3.jpg", alt: "image" %>
+            </a>
+          </div>
+          <div class="post_info">
+            <div class="post_category">
+              <a href="#">Real Estate</a>
+            </div>
+            <h4><a href="#">All the Lorem Ipsum.</a></h4>
+            <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
+            <div class="post_meta">
+              <p>By: <a href="#">ListingHub</a></p>
+              <p>On: <a href="#">22 March, 2017</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center">
+      <a href="#" class="btn">Read More Articles</a>
+    </div>
+    
+  </div>
+</section>
+<!-- /Latest-Blog -->
+
+<!-- Footer -->
+<footer id="footer" class="secondary-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="footer_widgets">
+          <h5>Connect with Us</h5>
+          <div class="follow_us">
+            <ul>
+              <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+              <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+              <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="footer_widgets">
+          <h5>Quick Links</h5>
+          <div class="footer_nav">
+            <ul>
+              <li><a href="#">How it Work</a></li>
+              <li><a href="#">Pricing</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms & condition</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="footer_widgets">
+          <h5>Our Newsletter</h5>
+          <div class="newsletter_wrap">
+            <form action="" method="get">
+              <input type="email" class="form-control" placeholder="Enter Email Address">
+              <input type="submit" value="subscribe" class="btn">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer_bottom">
+    <div class="container">
+      <p>Copyright &copy; 2017 ListingHub Private Limited. All Rights Reserved</p>
+    </div>
+  </div>
+</footer>
+<!-- /Footer -->
+
+
+
+

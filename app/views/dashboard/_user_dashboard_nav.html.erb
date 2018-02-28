@@ -1,0 +1,34 @@
+<!-- Header -->
+<header id="header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <div class="logo"> 
+          <a href="index.html">
+            <%= image_tag "logo.png" %>
+          </a> 
+        </div>
+        <div id="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i></div>
+      </div>
+      <div class="collapse navbar-collapse" id="navigation">
+        <div class="user_nav">
+          <div class="dropdown">
+            <span id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= image_tag "happy-client-01.jpg" %>
+              <img src="assets/images/happy-client-01.jpg" alt="img"> 
+            </span>
+            <ul class="dropdown-menu" aria-labelledby="dLabel">
+              <li><a href="dashboard.html"><i class="fa fa-cogs"></i> Dashboard</a></li>
+              <li><a href="dashboard-my-profile.html"><i class="fa fa-user-o"></i> My Profile</a></li>
+              <li><a href="index.html"><i class="fa fa-power-off"></i> Logout</a></li>                   
+            </ul>
+          </div>
+        </div>
+        <div class="submit_listing">
+          <a href="dashboard-add-listing.html" class="btn outline-btn"><i class="fa  fa-plus-circle"></i> Submit Listing</a>
+        </div>
+      </div>
+    </div>   
+  </nav>
+</header>
+<!-- /Header -->
