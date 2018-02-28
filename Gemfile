@@ -65,4 +65,5 @@ gem 'activeadmin'
 gem 'devise'
 gem 'country_select'
 gem 'geocoder'
+
 #app gems end...
