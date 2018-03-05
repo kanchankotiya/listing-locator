@@ -1,0 +1,36 @@
+<div class="nested-fields">
+  <div class="">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.label :day %>
+          <%= f.select :day, options_for_select(Listing::DAYS)   %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.label :from %>
+          <%= f.select :from, options_for_select(Listing::FROM), {class: "form-control"}   %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.label :to %>
+          <%= f.select :to, options_for_select(Listing::TO), {class: "form-control"}   %>
+        </div>
+      </div>
+      <div class="col-md-3" style="margin-top:2.6%;">
+        <%= link_to_remove_association f, class: "btn btn-remove" do %>
+          <i class="fa fa-trash"></i> Remove
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+  .btn-remove, .btn-remove:hover { background-color: #ad2020; }
+  .select-days{border:1px solid red;}
+  .form-control, form input, form textarea, form select{background-color: #fff;border:1px solid #cccccc;}
+</style>
+

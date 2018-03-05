@@ -5,11 +5,15 @@ class ListingsController < ApplicationController
   
   def index
     @listings = @listing_type.listings
+
   end
 
   def show
+    @image = Image.all
+    @opening= OpeningHour.all
   end
-
+  
+ 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_listing

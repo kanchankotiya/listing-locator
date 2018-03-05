@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
@@ -37,21 +37,21 @@
 
 <p>
   <strong>About palce:</strong>
-  <%= @listing.about_palce %>
-</p>
-<%= form_for :upload_images, url: :upload_listing_image_listings,  html: { multipart: true, class: "dropzone"} do |f|  %>
+  <%= @listing.about_listing %>
+</p> -->
+<%#= form_for :upload_images, url: :upload_listing_image_listings,  html: { multipart: true, class: "dropzone"} do |f|  %>
 
-  <%= f.hidden_field :listing_id, value:  @listing.id %>
-    <div class="fallback">
-      <%= f.file_field :img_name %><br>
-      <%= f.submit "Upload" %>
+<%#= f.hidden_field :listing_id, value:  @listing.id %>
+    <!-- <div class="fallback">
+      <%#= f.file_field :img_name %><br>
+      <%#= f.submit "Upload" %>
     </div>
-<% end %>
+<#% end %>
 
-
-<%= link_to 'Edit', edit_listing_path(@listing) %> |
-<%= link_to 'Back', listings_path %>
-<script type="text/javascript">
+-->
+<%#= link_to 'Edit', edit_listing_path(@listing) %>
+<%#= link_to 'Back', listings_path %>
+<!-- <script type="text/javascript">
     $(function () {
 
     $(".dropzone").dropzone({
@@ -77,4 +77,514 @@
       },
     });
   });
+</script> -->
+<%= render "home/home_header"%>
+
+<section id="listing_detail_banner" class="parallex-bg">
+  <div id="listing_img_slider">
+    <div class="owl-carousel owl-theme">
+      <% @listing.images.each do |image|%>
+      <div class="item">
+        <%= image_tag image.img_name_url %>  
+      </div>
+      <% end %>
+    </div>   
+  </div>
+  <div class="view_map">
+    <a href="#single_map" class="js-target-scroll"><i class="fa fa-map-marker"></i></a>
+  </div>
+</section>
+
+<!-- /Image-Slider -->
+
+<section class="listing_detail_header">
+  <div class="container">
+    <h1><%= @listing.name%></h1>
+    <p>5-star hotel with restaurant, Deluxe Rooms.</p>
+    <div class="listing_rating">
+      <p><span class="review_score">4.0/5</span> 
+       <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> 
+       <i class="fa fa-star active"></i> <i class="fa fa-star"></i> 
+       (5 Reviews) </p>
+       <p class="listing_like"><a href="#"><i class="fa fa-heart-o"></i> 5 Likes</a></p>
+       <p class="listing_favorites"><a href="#"><i class="fa fa-bookmark-o"></i>
+        Add to favorites</a>
+      </p>   
+    </div>   
+  </div>
+</section>
+
+<!-- Listings -->
+<section class="listing_info_wrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="listinghub_detail">
+          <div class="pricing_info">
+            <p class="listing_price"><span>$</span>2500 - <span>$</span>4000</p>
+            <div class="listing_message">
+              <a class="btn" data-toggle="modal" data-target="#message_modal">
+                <i class="fa fa-envelope-o"></i> Send Message
+              </a>
+            </div>
+            <!-- Send-Message -->
+            <div id="message_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h3 class="modal-title">Send Message</h3>
+                  </div>
+                  <div class="modal-body">
+                    <form action="#" method="get">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Name">
+                      </div>
+                      <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email">
+                      </div>
+                      <div class="form-group">
+                        <textarea rows="4" class="form-control" placeholder="Message"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <input value="Send Message" class="btn btn-block" type="submit">
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /Send-Message -->
+          </div>
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#description" aria-expanded="true" aria-controls="collapseOne">
+                   <i class="fa  fa-file-text-o">
+                   </i> Listing Description
+                  </a>
+                </h4>
+              </div>
+              <div id="description" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+               <div class="panel-body">
+                <p><%= @listing.about_listing %></p>
+               </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#amenities" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-align-left"></i> Amenities</a>
+                </h4>
+              </div>
+              <div id="amenities" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                  <% @listing.amenities.each do |c|%>
+                  <ul>
+                    <li><a href="#"><i class="<%= c.amenity_icon %>"></i><%= c.amenity_name %> </a></li>
+                  </ul>
+                  <%end%>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#opening_hours" aria-expanded="false" aria-controls="collapseThree"> <i class="fa fa-calendar-check-o"></i> Opening Hours</a>
+                </h4>
+              </div>
+              <div id="opening_hours" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                  <ul>
+                    <% @listing.opening_hours.each do |opening|%>
+                      <li>
+                        <span class="hours_title"><i class="fa  fa-clock-o"></i><%= opening.day %></span> 
+                        <span><%= opening.from %></span> - <span><%= opening.to %></span>
+                      </li>
+                    <%end%>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listing-Map -->
+          <div id="single_map">
+            <div class="widget_title">
+             <h4>View Map</h4>
+            </div>
+            <div id="single_map_wrp">
+             <div id="map_wrapper">
+              <div id="map"></div>
+
+             </div>
+            </div>
+          </div>
+          <!-- /Listing-Map -->
+
+         <!-- Review-List -->
+          <div class="reviews_list">
+            <div class="widget_title">
+              <h4><span>2 Reviews for</span> The Morning Hotel</h4>
+            </div>
+            <div class="review_wrap">
+              <div class="review_author">
+                <img src="assets/images/94x94.jpg" alt="image">
+                <figcaption>
+                  <h6>Joanna Atkinson</h6>
+                </figcaption>
+              </div>
+              <div class="review_detail">
+                <h5>Good service and Location is great</h5>
+                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. </p>
+                <div class="listing_rating">
+                 <p><span class="review_score">4.0/5</span> 
+                  <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> 
+                  <i class="fa fa-star active"></i> <i class="fa fa-star"></i> 
+                  (5 Reviews) </p>
+                  <p><i class="fa fa-clock-o"></i> April 11, 2017 8:52 am</p>  
+                </div>
+              </div>
+            </div>
+
+            <div class="review_wrap">
+              <div class="review_author">
+                <img src="assets/images/94x94.jpg" alt="image">
+                <figcaption>
+                  <h6>Joanna Atkinson</h6>
+                </figcaption>
+              </div>
+              <div class="review_detail">
+                <h5>Good service and Location is great</h5>
+                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. </p>
+                <div class="listing_rating">
+                  <p><span class="review_score">4.0/5</span> 
+                  <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> 
+                  <i class="fa fa-star active"></i> <i class="fa fa-star"></i> 
+                  (5 Reviews) </p>
+                  <p><i class="fa fa-clock-o"></i> April 11, 2017 8:52 am</p>  
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Review-List -->
+
+          <!-- Review-Form -->
+          <div id="writereview" class="review_form">
+            <div class="widget_title">
+             <h4>Write a Review </h4>
+            </div>
+            <form action="" method="get">
+              <div class="form-group">
+                <label class="form-label">Your Rating for this listing</label>
+                <div class="listing_rating">
+                  <input name="rating" id="rating-1" value="1" type="radio">
+                  <label for="rating-1" class="fa fa-star"></label>
+                  <input name="rating" id="rating-2" value="2" type="radio">
+                  <label for="rating-2" class="fa fa-star"></label>
+                  <input name="rating" id="rating-3" value="3" type="radio">
+                  <label for="rating-3" class="fa fa-star"></label>
+                  <input name="rating" id="rating-4" value="4" type="radio">
+                  <label for="rating-4" class="fa fa-star"></label>
+                  <input name="rating" id="rating-5" value="5" type="radio">
+                  <label for="rating-5" class="fa fa-star"></label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input name="" type="email" placeholder="you@website.com" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Title</label>
+                <input name="" type="text" placeholder="Title of Your Review" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Review</label>
+                <textarea name="" cols="" rows="" class="form-control" placeholder="Yout Experience"></textarea>
+              </div>
+              <div class="form-group">
+                <input type="submit" class="btn" value="Submit Review">
+              </div>
+            </form>
+          </div>
+        <!-- Review-Form -->
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-md-4">
+        <div class="listinghub_sidebar">
+          <div class="sidebar_wrap listing_action_btn">
+            <ul>
+              <li><a data-toggle="modal" data-target="#share_modal"><i class="fa fa-share-alt"></i> Share This</a></li>
+              <li><a data-toggle="modal" data-target="#email_friends_modal"><i class="fa fa-envelope-o"></i>Email to Friends</a></li>
+              <li><a href="#writereview" class="js-target-scroll"> <i class="fa fa-star"></i> Write a Review</a></li>
+              <li><a data-toggle="modal" data-target="#report_modal"><i class="fa fa-exclamation-triangle"></i> Report</a></li>
+            </ul>
+          </div>
+          <div class="sidebar_wrap listing_contact_info">
+            <div class="widget_title">
+              <h6>Contact Info</h6>
+            </div>
+            <ul>
+              <li><i class="fa fa-map-marker"></i> PO Box 1025MNO Collins Street West Victoria 8007 Australia</li>
+              <li><i class="fa fa-phone"></i> <a href="tel:+61-1234-5678-09">+61-1234-5678-09</a></li>
+              <li><i class="fa fa-envelope"></i> <a href="mailto:contcat@example.com">contcat@example.com</a></li>
+              <li><i class="fa fa-link"></i> <a href="www.example.com">www.example.com</a></li>
+            </ul>
+            <div class="social_links">
+              <a href="#" class="facebook_link"><i class="fa fa-facebook-f"></i></a>
+              <a href="#" class="linkedin_link"><i class="fa fa-linkedin"></i></a>
+              <a href="#" class="twitter_link"><i class="fa fa-twitter"></i></a>
+              <a href="#" class="google_plus_link"><i class="fa fa-google-plus"></i></a>
+            </div>
+          </div>
+
+          <div class="sidebar_wrap">
+            <div class="widget_title">
+              <h4>Watch Video</h4>
+            </div>
+            <div class="listing_video">
+              <iframe class="mfp-iframe" src="https://www.youtube.com/embed/rqSoXtKMU3Q" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Sidebar -->
+    </div>
+  </div>
+</section>
+<!-- /Listings -->
+
+<!-- Similar-Listings -->
+<section id="similar_listings" class="section-padding gray_bg">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>Similar Listings </h2>
+    </div>
+    <div class="row">
+      <div class="col-md-4 show_listing grid_col">
+        <div class="listing_wrap">
+          <div class="listing_img">
+            <span class="like_post"><i class="fa fa-bookmark-o"></i></span>
+            <div class="listing_cate">
+              <span class="cate_icon"><a href="#"><img src="assets/images/category-icon2.png" alt="icon-img"></a></span> 
+              <span class="listing_like"><a href="#"><i class="fa fa-heart-o"></i></a></span>
+            </div>
+            <a href="#"><img src="assets/images/listing_img2.jpg" alt="image"></a>
+          </div>
+          <div class="listing_info">
+            <div class="post_category">
+              <a href="#">Restaurant</a>
+            </div>
+            <h4><a href="#">Eating Restaurant</a></h4>
+            <p>5-star hotel with restaurant, Deluxe Rooms.</p>
+
+            <div class="listing_review_info">
+              <p><span class="review_score">4.0/5</span> 
+              <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> 
+              <i class="fa fa-star active"></i> <i class="fa fa-star"></i> 
+              (5 Reviews) </p>
+              <p class="listing_map_m"><i class="fa fa-map-marker"></i> Los Angeles</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 show_listing grid_col">
+        <div class="listing_wrap">
+          <div class="listing_img">
+            <span class="like_post"><i class="fa fa-bookmark-o"></i></span>
+            <div class="listing_cate">
+              <span class="cate_icon"><a href="#"><img src="assets/images/category-icon2.png" alt="icon-img"></a></span> 
+              <span class="listing_like"><a href="#"><i class="fa fa-heart-o"></i></a></span>
+            </div>
+            <a href="#"><img src="assets/images/listing_img11.jpg" alt="image"></a>
+          </div>
+          <div class="listing_info">
+            <div class="post_category">
+              <a href="#">Restaurant</a>
+            </div>
+            <h4><a href="#">MH Blue Restaurant</a></h4>
+            <p>5-star hotel with restaurant, Deluxe Rooms.</p>
+
+            <div class="listing_review_info">
+              <p><span class="review_score">4.0/5</span> 
+              <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> 
+              <i class="fa fa-star active"></i> <i class="fa fa-star"></i> 
+              (5 Reviews) </p>
+              <p class="listing_map_m"><i class="fa fa-map-marker"></i> Los Angeles</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 show_listing grid_col">
+        <div class="listing_wrap">
+          <div class="listing_img">
+            <span class="like_post"><i class="fa fa-bookmark-o"></i></span>
+            <div class="listing_cate">
+              <span class="cate_icon"><a href="#"><img src="assets/images/category-icon2.png" alt="icon-img"></a></span> 
+              <span class="listing_like"><a href="#"><i class="fa fa-heart-o"></i></a></span>
+            </div>
+            <a href="#"><img src="assets/images/listing_img10.jpg" alt="image"></a>
+          </div>
+          <div class="listing_info">
+            <div class="post_category">
+              <a href="#">Restaurant</a>
+            </div>
+            <h4><a href="#">Eating Restaurant</a></h4>
+            <p>5-star hotel with restaurant, Deluxe Rooms.</p>
+
+            <div class="listing_review_info">
+              <p><span class="review_score">4.0/5</span> 
+              <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> 
+              <i class="fa fa-star active"></i> <i class="fa fa-star"></i> 
+              (5 Reviews) </p>
+              <p class="listing_map_m"><i class="fa fa-map-marker"></i> Los Angeles</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ <!-- /Similar-Listings -->
+
+ <!-- Share-Listing -->
+<div id="share_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Share Listing</h3>
+      </div>
+      <div class="modal-body">
+        <div class="share_listing">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-linkedin"></i></a>
+          <a href="#"><i class="fa fa-google-plus"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Share-Listing -->
+<!-- Email-to-Friends -->
+<div id="email_friends_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Email to Friend</h3>
+      </div>
+      <div class="modal-body">
+        <form action="#" method="get">
+          <div class="form-group">
+            <input class="form-control" placeholder="Your Name" type="text">
+          </div>
+          <div class="form-group">
+            <input class="form-control" placeholder="Your Email Address" type="email">
+          </div>
+          <div class="form-group">
+            <input class="form-control" placeholder="Friend Email Address" type="email">
+          </div>
+          <div class="form-group">
+            <textarea rows="4" class="form-control" placeholder="Message"></textarea>
+          </div>
+          <div class="form-group">
+            <input value="Submit" class="btn btn-block" type="submit">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Email-to-Friends -->
+<!-- Report -->
+<div id="report_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Report This Listing</h3>
+        <p>Please indicate what problem has been found!</p>
+      </div>
+      <div class="modal-body">
+        <form action="#" method="get">
+          <div class="form-group">
+            <div class="radio">
+              <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_0" checked>
+              <label for="RadioGroup1_0">Duplicate Listing</label>
+            </div>
+            <div class="radio">
+              <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_1">
+              <label for="RadioGroup1_1">Wrong Contact Info </label>
+            </div>
+            <div class="radio">
+              <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_2">
+              <label for="RadioGroup1_2">Fake Listing</label>
+            </div>
+            <div class="radio">
+              <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_2">
+              <label for="RadioGroup1_2">Other Problem</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <textarea rows="4" class="form-control" placeholder="Problem Description"></textarea>
+          </div>
+          <div class="form-group">
+            <input value="Submit" class="btn btn-block" type="submit">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Report -->
+<style type="text/css">
+  #map_wrapper {
+    height: 400px;
+  }
+  #map {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+  }
+
+</style>
+
+ <script>
+      function initMap() {
+        var infowindow;
+        var lat = <%= @listing.latitude %>
+        var long = <%= @listing.longitude %>
+        var uluru = {lat: lat, lng: long};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+
+         //there is only a single marker, use only a single infowindow
+          if(!marker.get('infowindow')){
+            marker.set('infowindow',new google.maps.InfoWindow());
+            google.maps.event.addListener(marker, 'click', function() {
+              this.get('infowindow').open(map,this);
+            });
+          }
+
+          marker.get('infowindow').close();  
+      }
+    </script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8&callback=initMap">
   </script>
+
+
