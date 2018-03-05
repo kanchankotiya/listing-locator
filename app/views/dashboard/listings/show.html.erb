@@ -1,0 +1,81 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @listing.name %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @listing.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @listing.state %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @listing.country %>
+</p>
+
+<p>
+  <strong>Banner image:</strong>
+  <%= @listing.banner_image %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @listing.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @listing.latitude %>
+</p>
+
+<p>
+  <strong>About listing:</strong>
+  <%= @listing.about_listing %>
+
+</p>
+<%= form_for :upload_images, url: :upload_listing_image_dashboard_listings,  html: { multipart: true, class: "dropzone"} do |f|  %>
+
+  <%= f.hidden_field :listing_id, value:  @listing.id %>
+    <div class="fallback">
+      <%= f.file_field :img_name %><br>
+      <%= f.submit "Upload" %>
+    </div>
+<% end %>
+
+
+<%= link_to 'Edit', edit_dashboard_listing_path(@listing) %> |
+<%= link_to 'Back', dashboard_listings_path %>
+<script type="text/javascript">
+    $(function () {
+
+    $(".dropzone").dropzone({
+    
+      paramName: 'upload[img_name]',
+      addRemoveLinks: true,
+      success: function(file, response) {
+        $(file.previewElement).find('.dz-remove').attr('id', response.id);
+        $(file.previewElement).addClass('dz-success');
+      },
+      removedfile: function(file) {
+        var id = $(file.previewTemplate).find('.dz-remove').attr('id');
+        $.ajax({
+          type: 'DELETE',
+          url: "/remove_listing_image/" + id,
+          success: function(data) {
+            console.log(data.message);
+          }
+        });
+
+        var previewElement;
+        return (previewElement = file.previewElement) != null ? (previewElement.parentNode.removeChild(file.previewElement)) : (void 0);
+      },
+    });
+  });
+  </script>

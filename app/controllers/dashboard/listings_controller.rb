@@ -51,7 +51,7 @@ module Dashboard
 
       respond_to do |format|
         if @listing.save
-          format.html { redirect_to dashboard_listing_path(@listing), notice: 'Listing was successfully created.' }
+          format.html { redirect_to dashboard_listings_path(@listing), notice: 'Listing was successfully created.' }
           format.json { render :show, status: :created, location: @listing }
         else
           format.html { render :new }
@@ -92,7 +92,7 @@ module Dashboard
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def listing_params
-        params.require(:listing).permit(:name, :city, :state, :country, :banner_image, :about_palce, :address, :phone_number, :email, :website,:zip_code, :listing_type_id)
+        params.require(:listing).permit(:name, :city, :state, :country, :banner_image, :about_listing, :address, :phone_number, :email, :website,:zip_code, :listing_type_id, images_attributes: [:id,:img_name, :imageable_id, :imageable_type, :_destroy])
       end
   end
 
