@@ -65,7 +65,7 @@ module Dashboard
     def update
       respond_to do |format|
         if @listing.update(listing_params)
-          format.html { redirect_to @listing, notice: 'Listing was successfully updated.' }
+          format.html { redirect_to dashboard_listing_path (@listing), notice: 'Listing was successfully updated.' }
           format.json { render :show, status: :ok, location: @listing }
         else
           format.html { render :edit }
@@ -92,7 +92,7 @@ module Dashboard
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def listing_params
-        params.require(:listing).permit(:name, :city, :state, :country, :banner_image, :about_listing, :address, :phone_number, :email, :website,:zip_code, :listing_type_id, images_attributes: [:id,:img_name, :imageable_id, :imageable_type, :_destroy])
+        params.require(:listing).permit(:name, :city, :state, :country, :banner_image, :about_listing, :address, :phone_number, :email, :website,:zip_code, :listing_type_id, images_attributes: [:id,:img_name, :imageable_id, :imageable_type, :_destroy], opening_hours_attributes: [:id, :day, :from , :to, :_destroy])
       end
   end
 

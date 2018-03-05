@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228094828) do
+ActiveRecord::Schema.define(version: 20180305091137) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -87,6 +87,15 @@ ActiveRecord::Schema.define(version: 20180228094828) do
     t.string "website"
     t.string "zip_code"
     t.index ["listing_type_id"], name: "index_listings_on_listing_type_id"
+  end
+
+  create_table "opening_hours", force: :cascade do |t|
+    t.string "day"
+    t.string "from"
+    t.string "to"
+    t.integer "listing_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tourist_places", force: :cascade do |t|
