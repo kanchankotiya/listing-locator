@@ -63,6 +63,7 @@ gem 'cocoon'
 gem 'font-awesome-rails'
 gem 'activeadmin'
 gem 'devise'
+gem 'cancancan'
 gem 'country_select'
 gem 'geocoder'
 
