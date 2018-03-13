@@ -21,7 +21,8 @@
       <label class="label-title">Listing Tag Line</label>
       <%= form.text_field :about_listing, id: :listing_about_palce, class: "form-control" %>
     </div>
-    
+    <%= f.hidden_field :user_id, value: current_user.id if user_signed_in? %>
+      
 
     <div class="form-group">
       <label class="label-title">Listing Type</label>

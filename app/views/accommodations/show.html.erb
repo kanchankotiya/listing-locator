@@ -2,61 +2,48 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @listing.name %>
+  <%= @accommodation.name %>
 </p>
 
 <p>
   <strong>City:</strong>
-  <%= @listing.city %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @listing.city %>
+  <%= @accommodation.city %>
 </p>
 
 <p>
   <strong>State:</strong>
-  <%= @listing.state %>
+  <%= @accommodation.state %>
 </p>
 
 <p>
   <strong>Country:</strong>
-  <%= @listing.country %>
+  <%= @accommodation.country %>
 </p>
 
 <p>
-  <strong>Banner image:</strong>
-  <%= @listing.banner_image %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @listing.longitude %>
+  <strong>Address:</strong>
+  <%= @accommodation.address %>
 </p>
 
 <p>
   <strong>Latitude:</strong>
-  <%= @listing.latitude %>
+  <%= @accommodation.latitude %>
 </p>
 
 <p>
-  <strong>About listing:</strong>
-  <%= @listing.about_listing %>
-
+  <strong>Longitude:</strong>
+  <%= @accommodation.longitude %>
 </p>
-<%= form_for :upload_images, url: :upload_listing_image_dashboard_listings,  html: { multipart: true, class: "dropzone"} do |f|  %>
+<%= form_for :upload_images, url: :upload_accommodation_image_accommodations,  html: { multipart: true, class: "dropzone"} do |f|  %>
 
-  <%= f.hidden_field :accommodation_id, value:  @listing.id %>
+  <%= f.hidden_field :accommodation_id, value:  @accommodation.id %>
     <div class="fallback">
       <%= f.file_field :img_name %><br>
       <%= f.submit "Upload" %>
     </div>
 <% end %>
-
-
-<%= link_to 'Edit', edit_dashboard_listing_path(@listing) %> |
-<%= link_to 'Back', dashboard_listings_path %>
+<%= link_to 'Edit', edit_accommodation_path(@accommodation) %> |
+<%= link_to 'Back', accommodations_path %>
 <script type="text/javascript">
     $(function () {
 
@@ -72,7 +59,7 @@
         var id = $(file.previewTemplate).find('.dz-remove').attr('id');
         $.ajax({
           type: 'DELETE',
-          url: "/remove_listing_image/" + id,
+          url: "/remove_accommodation_image/" + id,
           success: function(data) {
             console.log(data.message);
           }

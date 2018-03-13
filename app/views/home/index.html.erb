@@ -40,14 +40,14 @@
     <div id="category_slider">
       <div class="owl-carousel owl-theme">
         <% @listing_types.each do |lt| %>
-          <div class="item">
-            <%= link_to listing_type_listings_path(lt) do %>
-              <div class="category_icon">
-                <%= image_tag lt.icon_url, alt: "image"%>
-              </div>
-              <p><%= lt.name %></p>
-            <% end %>
+        <div class="item">
+          <%= link_to listing_type_listings_path(lt) do %>
+          <div class="category_icon">
+            <%= image_tag lt.icon_url, alt: "image"%>
           </div>
+          <p><%= lt.name %></p>
+          <% end %>
+        </div>
         <% end %>
       </div>
     </div>        
@@ -56,28 +56,29 @@
 <!-- /Category-Slider -->
 
 <!-- Popular-Cities/Towns --> 
-<section id="popular_cities" class="section-padding">
-  <div class="container">
-    <div class="section-header text-center">
+  <section id="popular_cities" class="section-padding">
+    <div class="container">
+      <div class="section-header text-center">
 
-      <h2>Top Ten Tourist Places</h2>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-    </div>
-    
-    <div class="row">
-      <% @tourist_places.last(8).each do |tourist_place|  %>
-      <div class="col-sm-6 col-md-3">
-        <div class="cities_list" style="background: url(<%= tourist_place.banner_image_url %>)">
-          <div class="city_listings_info">
-            <h4><%= tourist_place.name %></h4>
-            <div class="listing_number"><span>6 Listings</span> </div>
-          </div>
-          <a href="#" class="overlay_link"></a>
-        </div>
+        <h2>Top Ten Tourist Places</h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
       </div>
-      <%end%>
-      <div class="text-center">
-        <a href="#" class="btn">View More Cities / Towns</a>
+      
+      <div class="row">
+        <% @tourist_places.last(8).each do |tourist_place|  %>
+        <div class="col-sm-6 col-md-3">
+          <div class="cities_list" style="background: url(<%= tourist_place.banner_image_url %>)">
+            <div class="city_listings_info">
+              <h4><%= tourist_place.name %></h4>
+              <div class="listing_number"><span>6 Listings</span> </div>
+            </div>
+            <a href="#" class="overlay_link"></a>
+          </div>
+        </div>
+        <%end%>
+        <div class="text-center">
+          <a href="#" class="btn">View More Cities / Towns</a>
+        </div>
       </div>
     </div>
   </section>
@@ -101,39 +102,43 @@
   <!-- /About-us -->
 
   <!-- Popular-Listings -->
+  
+  <!-- /Popular-Listings -->
   <section id="popular_listings" class="section-padding">
     <div class="container">
       <div class="section-header text-center">
-        <h2>Popular Exclusive Listings</h2>
+        <h2>Featured Listings</h2>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
       </div>   
-
       <div id="popular_listing_slider">
         <div class="owl-carousel owl-theme">
+          <% @listing_types.each do |listing_type| %> 
+          <% listing_type.listings.each do |listing|%>  
+          <% if listing.featured == true %>
           <div class="listing_wrap">
             <div class="listing_img">
               <span class="like_post"><i class="fa fa-bookmark-o"></i></span>
               <div class="listing_cate">
-                <span class="cate_icon">
-                  <a href="#">
-                    <%= image_tag "category-icon1.png", alt: "icon-img" %>
-                  </a>
-                </span> 
+                <span class="cate_icon"><a href="#"><%= image_tag listing_type.icon if listing_type%></a></span> 
                 <span class="listing_like"><a href="#"><i class="fa fa-heart-o"></i></a></span>
               </div>
               <a href="#">
-                <%= image_tag "listing_img1.jpg", alt: "image" %>
+                <% if listing.listing_type%>
+                <%= link_to listing_type_listing_path(listing.listing_type, listing) do %>
+                <%= image_tag listing.banner_image, class: "featured_img" %>
+                <% end %>
+                <% end %>
               </a>
             </div>
             <div class="listing_info">
               <div class="post_category">
-                <a href="#">Real Estate</a>
+                <a href="#"><%= listing_type.name  if listing_type%></a>
               </div>
-              <h4><a href="#">The Morning Hotel</a></h4>
-              <p>5-star hotel with restaurant, Deluxe Rooms.</p>
+              <h4><a href="#"><%= listing.name%></a></h4>
+              <p><%= truncate(listing.about_listing, length: 30)%>.</p>
 
               <div class="listing_review_info">
-                <p><span class="review_score">4.0/5</span> 
+               <p><span class="review_score">4.0/5</span> 
                  <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> 
                  <i class="fa fa-star active"></i> <i class="fa fa-star"></i> 
                  (5 Reviews) </p>
@@ -141,91 +146,13 @@
                </div>
              </div>
            </div>
-
-           <div class="listing_wrap">
-            <div class="listing_img">
-              <span class="like_post"><i class="fa fa-bookmark-o"></i></span>
-              <div class="listing_cate">
-                <span class="cate_icon"><a href="#"><%= image_tag "category-icon2.png", alt: "icon-img" %></a></span> 
-                <span class="listing_like"><a href="#"><i class="fa fa-heart-o"></i></a></span>
-              </div>
-              <a href="#"><%= image_tag "listing_img2.jpg", alt: "image" %></a>
-            </div>
-            <div class="listing_info">
-              <div class="post_category">
-                <a href="#">Restaurant</a>
-              </div>
-              <h4><a href="#">Eating Restaurant</a></h4>
-              <p>5-star hotel with restaurant, Deluxe Rooms.</p>
-
-              <div class="listing_review_info">
-                <p><span class="review_score">4.0/5</span> 
-                 <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> 
-                 <i class="fa fa-star active"></i> <i class="fa fa-star"></i> 
-                 (5 Reviews) </p>
-                 <p class="listing_map_m"><i class="fa fa-map-marker"></i> Los Angeles</p>
-               </div>
-             </div>
-           </div>
-
-           <div class="listing_wrap">
-            <div class="listing_img">
-              <span class="like_post"><i class="fa fa-bookmark-o"></i></span>
-              <div class="listing_cate">
-                <span class="cate_icon"><a href="#"><%= image_tag "category-icon4.png", alt: "icon-img" %></a></span> 
-                <span class="listing_like"><a href="#"><i class="fa fa-heart-o"></i></a></span>
-              </div>
-              <a href="#"><%= image_tag "listing_img4.jpg", alt: "image" %></a>
-            </div>
-            <div class="listing_info">
-              <div class="post_category">
-                <a href="#">Beauty & Spas</a>
-              </div>
-              <h4><a href="#">The Morning Hotel</a></h4>
-              <p>5-star hotel with restaurant, Deluxe Rooms.</p>
-
-              <div class="listing_review_info">
-                <p><span class="review_score">4.0/5</span> 
-                 <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> 
-                 <i class="fa fa-star active"></i> <i class="fa fa-star"></i> 
-                 (5 Reviews) </p>
-                 <p class="listing_map_m"><i class="fa fa-map-marker"></i> Los Angeles</p>
-               </div>
-             </div>
-           </div>
-
-           <div class="listing_wrap">
-            <div class="listing_img">
-              <span class="like_post"><i class="fa fa-bookmark-o"></i></span>
-              <div class="listing_cate">
-                <span class="cate_icon"><a href="#"><%= image_tag "category-icon2.png", alt: "icon-img" %></a></span> 
-                <span class="listing_like"><a href="#"><i class="fa fa-heart-o"></i></a></span>
-              </div>
-              <a href="#"><%= image_tag "listing_img3.jpg", alt: "image" %></a>
-            </div>
-            <div class="listing_info">
-              <div class="post_category">
-                <a href="#">Restaurant</a>
-              </div>
-              <h4><a href="#">Blue Restaurant</a></h4>
-              <p>5-star hotel with restaurant, Deluxe Rooms.</p>
-
-              <div class="listing_review_info">
-                <p><span class="review_score">4.0/5</span> 
-                 <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> <i class="fa fa-star active"></i> 
-                 <i class="fa fa-star active"></i> <i class="fa fa-star"></i> 
-                 (5 Reviews) </p>
-                 <p class="listing_map_m"><i class="fa fa-map-marker"></i> Los Angeles</p>
-               </div>
-             </div>
-           </div>
+           <%end%> 
+           <%end%>   
+           <%end%>
          </div>
        </div>
-
      </div>
    </section>
-   <!-- /Popular-Listings -->
-
    <!-- Testimonials -->
    <section id="testimonials" class="section-padding parallex-bg">
     <div class="container">
@@ -332,8 +259,7 @@
     
     <div class="text-center">
       <a href="#" class="btn">Read More Articles</a>
-    </div>
-    
+    </div> 
   </div>
 </section>
 <!-- /Latest-Blog -->
@@ -394,7 +320,15 @@
   </div>
 </footer>
 <!-- /Footer -->
+<style type="text/css">
+  .owl-theme.owl-carousel .owl-item .featured_img
+  {
+    max-width: 100%;
+    width: 368px;
+    height: 244px;
 
+  }
+</style>
 
 
 

@@ -1,0 +1,38 @@
+<section class="primary-bg">
+  <div class="container">
+    <div id="login_signup">
+      <div class="form_wrap_m">
+        <div class="white_box">
+          <h3>Login </h3>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+          <div class="form-group"> 
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email" %>
+          </div>
+          <div class="form-group">
+            <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password" %>
+          </div>
+          <% if devise_mapping.rememberable? -%>
+          <div class="checkbox chek">
+            <%= f.check_box :remember_me%>
+            <%= f.label :remember_me %>
+          </div>
+          <% end -%>
+          <div class="form-group actions">
+            <%= f.submit "Log in", class: "btn btn-block", value: "Login" %>
+          </div>
+          <% end %>
+          <p>Don't have an account? <%= link_to "Signup Here", new_registration_path(resource_name) %></p>
+          <p><%= link_to "Lost your password?", new_password_path(resource_name) %></p>
+          <div class="back_home"><a href="index.html" class="btn outline-btn btn-sm"><i class="fa fa-angle-double-left"></i> Back to Home</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style type="text/css">
+  .chek
+  {
+    margin-left: -62%;
+  }
+</style>
