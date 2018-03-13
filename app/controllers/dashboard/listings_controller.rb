@@ -1,12 +1,13 @@
 module Dashboard
-
   class ListingsController < ApplicationController
+  load_and_authorize_resource
     before_action :set_listing, only: [:show, :edit, :update, :destroy]
     layout 'dashboard'
     # GET /listings
     # GET /listings.json
     def index
-      @listings = Listing.all
+      @listings = current_user.listings
+      @users = User.all
     end
 
     # GET /listings/1
@@ -51,7 +52,7 @@ module Dashboard
 
       respond_to do |format|
         if @listing.save
-          format.html { redirect_to dashboard_listings_path(@listing), notice: 'Listing was successfully created.' }
+          format.html { redirect_to dashboard_listings_path, notice: 'Listing was successfully created.' }
           format.json { render :show, status: :created, location: @listing }
         else
           format.html { render :new }
@@ -63,9 +64,10 @@ module Dashboard
     # PATCH/PUT /listings/1
     # PATCH/PUT /listings/1.json
     def update
+
       respond_to do |format|
-        if @listing.update(listing_params)
-          format.html { redirect_to dashboard_listing_path (@listing), notice: 'Listing was successfully updated.' }
+        if @listing.update_attributes(listing_params)
+         format.html { redirect_to dashboard_listings_path, notice: 'Listing was successfully created.' }
           format.json { render :show, status: :ok, location: @listing }
         else
           format.html { render :edit }
@@ -92,7 +94,7 @@ module Dashboard
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def listing_params
-        params.require(:listing).permit(:name, :city, :state, :country, :banner_image, :about_listing, :address, :phone_number, :email, :website,:zip_code, :listing_type_id, images_attributes: [:id,:img_name, :imageable_id, :imageable_type, :_destroy], opening_hours_attributes: [:id, :day, :from , :to, :_destroy])
+        params.require(:listing).permit(:name, :city, :state, :country, :banner_image, :user_id, :about_listing, :address, :phone_number, :email, :website,:zip_code, :listing_type_id, images_attributes: [:id,:img_name, :imageable_id, :imageable_type, :_destroy], opening_hours_attributes: [:id, :day, :from , :to, :_destroy])
       end
   end
 
