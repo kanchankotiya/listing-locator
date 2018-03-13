@@ -3,6 +3,7 @@ class Listing < ApplicationRecord
   validates :name, :city, :state, :country, :banner_image, :about_listing, :address, :email, :phone_number, :website, :zip_code, presence: true 
   
   has_many :images, as: :imageable
+  belongs_to :user
   # mount_uploader :img_name, AvatarUploader
   mount_uploader :banner_image, AvatarUploader
   belongs_to :listing_type, optional: true
